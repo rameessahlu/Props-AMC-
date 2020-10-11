@@ -1,0 +1,36 @@
+{% load file_name_with_ext from propsAMC_file_tags %}
+<thead>
+  <tr>
+    <th>#</th>
+    <th>ID</th>
+    <th>Address Book File Name</th>
+    <th>Uploaded File</th>
+    <th>Geocoded File</th>
+  </tr>
+</thead>
+
+<tbody>
+  {% for file in files reversed %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ file.ab_id }}</td>
+    <td>{{ file.file_name }}</td>
+    <td>
+      <a
+        href="{{ file.excel_file.url }}"
+        class="btn btn-primary btn-sm"
+        target="_blank"
+        >Download</a
+      >
+    </td>
+    <td>
+      <a
+        href="media/output_add_books/excel/{{ file.excel_file | file_name_with_ext }}"
+        class="btn btn-primary btn-sm"
+        target="_blank"
+        >Download</a
+      >
+    </td>
+  </tr>
+  {% endfor%}
+</tbody>
